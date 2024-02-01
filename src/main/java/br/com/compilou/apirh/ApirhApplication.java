@@ -3,7 +3,7 @@ package br.com.compilou.apirh;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "br.com.compilou.apirh")
 public class ApirhApplication {
 
 	public static void main(String[] args) {

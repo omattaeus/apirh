@@ -19,6 +19,8 @@ public class Vacancy implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long code;
     @NotEmpty
+    private String name;
+    @NotEmpty
     private String description;
     @NotEmpty
     private String date;
@@ -35,6 +37,14 @@ public class Vacancy implements Serializable {
 
     public void setCode(Long code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -74,11 +84,11 @@ public class Vacancy implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vacancy vacancy = (Vacancy) o;
-        return Objects.equals(code, vacancy.code) && Objects.equals(description, vacancy.description) && Objects.equals(date, vacancy.date) && Objects.equals(wage, vacancy.wage) && Objects.equals(candidates, vacancy.candidates);
+        return Objects.equals(code, vacancy.code) && Objects.equals(name, vacancy.name) && Objects.equals(description, vacancy.description) && Objects.equals(date, vacancy.date) && Objects.equals(wage, vacancy.wage) && Objects.equals(candidates, vacancy.candidates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, description, date, wage, candidates);
+        return Objects.hash(code, name, description, date, wage, candidates);
     }
 }

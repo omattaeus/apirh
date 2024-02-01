@@ -22,7 +22,7 @@ public class VacancyController {
 
     @GetMapping(value = "/vacancyRegister")
     public String form(){
-        return "vacancy/formVacancy";
+        return "vacancy/formVacancy.html";
     }
 
     @PostMapping(value = "/vacancyRegister")
@@ -39,7 +39,7 @@ public class VacancyController {
 
     @RequestMapping("/vagas")
     public ModelAndView vacancyList(){
-        ModelAndView mv = new ModelAndView("vacancy/vacancyList");
+        ModelAndView mv = new ModelAndView("vacancy/vacancyList.html");
         Iterable<Vacancy> vacancies = vac.findAll();
         mv.addObject("vacancy", vacancies);
         return mv;
@@ -48,7 +48,7 @@ public class VacancyController {
     @GetMapping(value = "/{code}")
     public ModelAndView detailsVacancy(@PathVariable("code") Long code){
         Vacancy vacancy = vac.findByCode(code);
-        ModelAndView mv = new ModelAndView("vacancy/detailsVacancy");
+        ModelAndView mv = new ModelAndView("vacancy/detailsVacancy.html");
         mv.addObject("vacancy", vacancy);
 
         Iterable<Candidate> candidates = cand.findByVacancy(vacancy);

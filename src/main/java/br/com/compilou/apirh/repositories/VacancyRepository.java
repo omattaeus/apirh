@@ -11,8 +11,9 @@ import java.util.List;
 public interface VacancyRepository extends CrudRepository<Vacancy, String> {
 
     Vacancy findByCode(Long code);
+
     List<Vacancy> findByName(String name);
 
-    @Query(value = "select u from vacancy u where u.name like %?1%")
+    @Query("SELECT v FROM Vacancy v WHERE v.name LIKE %?1%")
     List<Vacancy> findByVacancyName(String name);
 }

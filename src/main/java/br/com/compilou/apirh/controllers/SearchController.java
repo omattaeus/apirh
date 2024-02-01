@@ -24,25 +24,25 @@ public class SearchController {
     @Autowired
     private CandidateRepository cand;
 
-    @GetMapping(value = "/")
-    public ModelAndView openIndex(){
+    @GetMapping(value = "/index")
+    public ModelAndView openIndex() {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
 
-    @PostMapping(value = "/")
-    public ModelAndView searchIndex(@RequestParam("search") String search, @RequestParam("name") String name){
+    @PostMapping(value = "/search")
+    public ModelAndView searchIndex(@RequestParam("search") String search, @RequestParam("name") String name) {
         ModelAndView mv = new ModelAndView("index");
         String message = "Search results for " + search;
 
         switch (name) {
-            case "employeeName" -> mv.addObject("employees", emp.findByNames(search));
-            case "depedensName" -> mv.addObject("depedents", dep.findByDepedentsName(search));
+            case "employeeName" -> mv.addObject("employee", emp.findByNames(search));
+            case "depedentsName" -> mv.addObject("depedents", dep.findByDependentsName(search));
             case "candidateName" -> mv.addObject("candidates", cand.findByNameCandidate(search));
             case "titleVacancy" -> mv.addObject("vacancies", vac.findByVacancyName(search));
             default -> {
-                mv.addObject("employees", emp.findByNames(search));
-                mv.addObject("depedents", dep.findByDepedentsName(search));
+                mv.addObject("employee", emp.findByNames(search));
+                mv.addObject("depedents", dep.findByDependentsName(search));
                 mv.addObject("candidates", cand.findByNameCandidate(search));
                 mv.addObject("vacancies", vac.findByVacancyName(search));
             }

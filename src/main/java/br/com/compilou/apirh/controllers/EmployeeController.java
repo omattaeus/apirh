@@ -21,7 +21,7 @@ public class EmployeeController {
 
     @GetMapping
     public String form(){
-        return "employee/formEmployee";
+        return "employee/formEmployee.html";
     }
 
     @PostMapping(value = "/register")
@@ -37,7 +37,7 @@ public class EmployeeController {
 
     @RequestMapping("/employee")
     public ModelAndView employeeList() {
-        ModelAndView mv = new ModelAndView("employee/employeeList");
+        ModelAndView mv = new ModelAndView("employee/employeeList.html");
         Iterable<Employee> employees = emp.findAll();
         mv.addObject("employee", employees);
         return mv;
