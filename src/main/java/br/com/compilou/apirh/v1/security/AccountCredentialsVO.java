@@ -1,4 +1,4 @@
-package br.com.compilou.apirh.security.Jwt;
+package br.com.compilou.apirh.v1.security;
 
 import java.io.Serial;
 import java.io.Serializable;

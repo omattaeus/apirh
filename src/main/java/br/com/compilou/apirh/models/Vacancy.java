@@ -6,10 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name = "vacancy")
+@Table(name = "Vacancy")
 public class Vacancy implements Serializable {
 
     @Serial
@@ -17,7 +16,7 @@ public class Vacancy implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long code;
+    private Long id;
     @NotEmpty
     private String name;
     @NotEmpty
@@ -31,12 +30,12 @@ public class Vacancy implements Serializable {
 
     public Vacancy() {}
 
-    public Long getCode() {
-        return code;
+    public Long getId() {
+        return id;
     }
 
-    public void setCode(Long code) {
-        this.code = code;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -77,18 +76,5 @@ public class Vacancy implements Serializable {
 
     public void setCandidates(List<Candidate> candidates) {
         this.candidates = candidates;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Vacancy vacancy = (Vacancy) o;
-        return Objects.equals(code, vacancy.code) && Objects.equals(name, vacancy.name) && Objects.equals(description, vacancy.description) && Objects.equals(date, vacancy.date) && Objects.equals(wage, vacancy.wage) && Objects.equals(candidates, vacancy.candidates);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(code, name, description, date, wage, candidates);
     }
 }

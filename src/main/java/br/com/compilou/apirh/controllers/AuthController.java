@@ -1,7 +1,7 @@
 package br.com.compilou.apirh.controllers;
 
-import br.com.compilou.apirh.security.Jwt.AccountCredentialsVO;
 import br.com.compilou.apirh.services.AuthServices;
+import br.com.compilou.apirh.v1.security.AccountCredentialsVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

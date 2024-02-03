@@ -1,3 +1,4 @@
+
 package br.com.compilou.apirh.exceptions.handler;
 
 import org.springframework.http.HttpStatus;

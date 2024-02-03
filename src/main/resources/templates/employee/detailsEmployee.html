@@ -24,7 +24,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/">App RH</a>
+				<a class="navbar-brand" href="/">RH</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false"
@@ -34,9 +34,9 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="/employeeList">Funcionários</a></li>						<li class="nav-item"><a class="nav-link" href="/employeeRegister">Cadastrar Funcionário</a></li>
-						<li class="nav-item"><a class="nav-link" href="/vacancyList"><< Listar Vagas>> </a></li>
-						<li class="nav-item"><a class="nav-link" href="/formVacancy"> << Cadastrar Vaga>> </a></li>
+						<li class="nav-item"><a class="nav-link" href="/formulario">Funcionários</a></li>
+						<li class="nav-item"><a class="nav-link" href="/vacancy">Listar Vagas</a></li>
+						<li class="nav-item"><a class="nav-link" href="/vacancyRegister">Cadastrar Vaga</a>
 						<li class="nav-item"><a class="nav-link" href="/logout">Sair</a></li>
 					</ul>
 				</div>
@@ -44,7 +44,7 @@
 		</nav>
 	</header>
 	<div class="container">
-		<h1>Informações do funcionário:</h1>
+		<h1>Informações do Funcionário:</h1>
 		<div class="container" th:each="employee : ${employee}">
 			<br>
 			<p>
@@ -57,7 +57,7 @@
 				<b>E-mail:</b> <span th:text="${employee.email}"></span>
 			</p>
 			<br> <br>
-			<h2>Cadastrar dependentes</h2>
+			<h2>Cadastrar Dependentes</h2>
 			<form method="post" th:object="${depedents}">
 				<div class="form-group">
 					<div class="row">
@@ -93,9 +93,9 @@
 		<table class="table table-hover table-responsive w-auto table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Nome do dependente:</th>
+					<th scope="col">Nome do Dependente:</th>
 					<th scope="col">CPF:</th>
-					<th scope="col">Data de nascimento:</th>
+					<th scope="col">Data de Nascimento:</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,7 +112,7 @@
 	</div>
 	<div style="height: 100px;"></div>
 	<div class="footer-copyright fixed-bottom bg-dark text-center py-3">
-		<span class="text-light align-middle">API RH - 2024 Copyright: Compilou | Matsoft</span>
+		<span class="text-light align-middle">API RH - 2024 | Copyright: Mateus Gomes</span>
 	</div>
 	<!--JavaScript bootstrap-->
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>

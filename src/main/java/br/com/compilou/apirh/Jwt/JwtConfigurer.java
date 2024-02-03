@@ -1,6 +1,5 @@
-package br.com.compilou.apirh.security.Jwt;
+package br.com.compilou.apirh.Jwt;
 
-import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

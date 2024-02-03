@@ -9,16 +9,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CandidateRepository extends CrudRepository<Candidate, String> {
+public interface CandidateRepository extends CrudRepository<Candidate, Long> {
+
+    Candidate findCandidateById(Long id);
 
     Iterable<Candidate> findByVacancy(Vacancy vacancy);
 
     Candidate findByRg(String rg);
 
-    Candidate findById(Long id);
-
-    @Query("SELECT u FROM Candidate u WHERE u.nameCandidate like %?1%")
-    List<Candidate> findByNameCandidate(String nameCandidate);
-
-
+    @Query("SELECT u FROM Candidate u WHERE u.nameCandidate LIKE %?1%")
+    List<Candidate> findByNameCandidateContaining(String nameCandidate);
 }

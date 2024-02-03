@@ -1,7 +1,7 @@
-package br.com.compilou.apirh.security.Jwt;
+package br.com.compilou.apirh.Jwt;
 
-import br.com.compilou.apirh.data.vo.v1.security.TokenVO;
 import br.com.compilou.apirh.exceptions.handler.InvalidJwtAuthenticationException;
+import br.com.compilou.apirh.v1.security.TokenVO;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;

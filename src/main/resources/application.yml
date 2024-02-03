@@ -12,6 +12,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
       show-sql: false
+  data:
+    jdbc:
+      repositories:
+        enabled: false
 spring-doc:
   pathsToMatch: /api/**/v1/**
   swagger-ui:

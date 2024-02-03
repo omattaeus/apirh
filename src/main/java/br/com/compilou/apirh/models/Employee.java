@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
@@ -16,9 +15,8 @@ public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
     private String date;
     private String email;
@@ -66,18 +64,5 @@ public class Employee implements Serializable {
 
     public void setDependents(List<Depedents> dependents) {
         this.dependents = dependents;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && Objects.equals(date, employee.date) && Objects.equals(email, employee.email) && Objects.equals(dependents, employee.dependents);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, date, email, dependents);
     }
 }

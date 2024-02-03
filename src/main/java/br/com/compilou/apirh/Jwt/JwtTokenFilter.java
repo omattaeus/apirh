@@ -1,4 +1,4 @@
-package br.com.compilou.apirh.security.Jwt;
+package br.com.compilou.apirh.Jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

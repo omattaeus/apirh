@@ -2,11 +2,16 @@ package br.com.compilou.apirh.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "depedents")
-public class Depedents {
+@Table(name = "Depedents")
+public class Depedents implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue

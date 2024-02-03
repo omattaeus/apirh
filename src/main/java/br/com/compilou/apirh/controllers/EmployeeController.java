@@ -12,21 +12,23 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
-@RequestMapping(value = "/api/rh/v1/")
+@RequestMapping(value = "/api/rh/employee")
 public class EmployeeController {
+
     @Autowired
     private EmployeeRepository emp;
+
     @Autowired
     private DepedentsRepository dep;
 
-    @GetMapping
-    public String form(){
-        return "employee/formEmployee.html";
+    @GetMapping(value = "/formulario")
+    public String form() {
+        return "./templates/employee/formEmployee.html";
     }
 
     @PostMapping(value = "/register")
-    public String form(@Valid Employee employee, BindingResult result, RedirectAttributes attributes){
-        if(result.hasErrors()){
+    public String form(@Valid Employee employee, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) {
             attributes.addFlashAttribute("message", "Check the fields!");
             return "redirect:/register";
         }
@@ -35,18 +37,19 @@ public class EmployeeController {
         return "redirect:/register";
     }
 
-    @RequestMapping("/employee")
+    @GetMapping("/employee")
     public ModelAndView employeeList() {
-        ModelAndView mv = new ModelAndView("employee/employeeList.html");
+        ModelAndView mv = new ModelAndView("./templates/employee/employeeList.html");
         Iterable<Employee> employees = emp.findAll();
         mv.addObject("employee", employees);
         return mv;
     }
 
-    @GetMapping(value = "/depedents/{id}")
-    public ModelAndView depedents(@PathVariable("id") Long id) {
+    @GetMapping(value = "/detailsemp/{id}")
+    public ModelAndView depedents(@PathVariable("id") long id) {
         Employee employee = emp.findById(id);
-        ModelAndView mv = new ModelAndView("employee/depedents");
+
+        ModelAndView mv = new ModelAndView("./templates/employee/detailsEmployee.html");
         mv.addObject("employee", employee);
 
         Iterable<Depedents> depedents = dep.findByEmployee(employee);
@@ -55,58 +58,49 @@ public class EmployeeController {
         return mv;
     }
 
-    @PostMapping(value = "/depedents/{id}")
-    public String depedentsPost(@PathVariable("id") Long id, Depedents depedents, BindingResult result,
-                                  RedirectAttributes attributes) {
+    @PostMapping(value = "detailspost/{id}")
+    public String detailsFuncPost(@PathVariable("id") long id, Depedents depedents, BindingResult result,
+                                RedirectAttributes attributes) {
 
-        if(result.hasErrors()) {
-            attributes.addFlashAttribute("message", "Check the fields!");
-            return "redirect:/depedents/{id}";
-        }
+      if(result.hasErrors()){
+          attributes.addFlashAttribute("message", "Check the fields!");
+          return "redirect:/detailspost/{id}";
+      }
 
-        if(dep.findByCpf(depedents.getCpf()) != null) {
-            attributes.addFlashAttribute("error-message", "Duplicate CPF");
-            return "redirect:/depedents/{id}";
-        }
-
-        Employee employee = emp.findById(id);
-        depedents.setEmployee(employee);
-        dep.save(depedents);
-        attributes.addFlashAttribute("message", "Dependent added successfully!");
-        return "redirect:/depedents/{id}";
-
+      Employee employee = emp.findById(id);
+      depedents.setEmployee(employee);
+      dep.save(depedents);
+      attributes.addFlashAttribute("message", "Dependent added successfully!");
+      return "redirect:/detailspost/{id}";
     }
 
-    @RequestMapping("/deleteEmp")
-    public String deleteEmployee(Long id) {
+    @GetMapping("/deleteEmp")
+    public String deleteEmployee(long id) {
         Employee employee = emp.findById(id);
         emp.delete(employee);
         return "redirect:/employee";
-
     }
 
-    @GetMapping(value = "/editEmployee")
+    @GetMapping(value = "/editemployeeget")
     public ModelAndView editEmployee(long id) {
         Employee employee = emp.findById(id);
-        ModelAndView mv = new ModelAndView("employee/update-employee");
+        ModelAndView mv = new ModelAndView("./templates/employee/updateEmployee.html");
         mv.addObject("employee", employee);
         return mv;
     }
 
     // update funcionário
-    @PostMapping(value = "/editEmployee")
-    public String updateEmployee(@Valid Employee employee,  BindingResult result, RedirectAttributes attributes){
-
+    @PostMapping(value = "/editemployeepost")
+    public String updateEmployee(@Valid Employee employee, BindingResult result, RedirectAttributes attributes) {
         emp.save(employee);
         attributes.addFlashAttribute("successs", "Employee changed successfully!");
 
         Long idLong = employee.getId();
         String id = "" + idLong;
-        return "redirect:/depedents/" + id;
-
+        return "redirect:/detailsemp/" + id;
     }
 
-    @DeleteMapping(value = "/deleteDep")
+    @GetMapping(value = "/deleteDep")
     public String deleteDepedents(String cpf) {
         Depedents depedents = dep.findByCpf(cpf);
 
@@ -114,7 +108,6 @@ public class EmployeeController {
         String code = "" + employee.getId();
 
         dep.delete(depedents);
-        return "redirect:/depedents/" + code;
-
+        return "redirect:/redirect:/detailsemp/" + code;
     }
 }

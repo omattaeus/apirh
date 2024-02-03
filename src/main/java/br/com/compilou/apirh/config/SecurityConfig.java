@@ -1,7 +1,7 @@
 package br.com.compilou.apirh.config;
 
-import br.com.compilou.apirh.security.Jwt.JwtTokenFilter;
-import br.com.compilou.apirh.security.Jwt.JwtTokenProvider;
+import br.com.compilou.apirh.Jwt.JwtTokenFilter;
+import br.com.compilou.apirh.Jwt.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
